@@ -38,7 +38,7 @@ O sistema foi desenvolvido como um projeto acadêmico, aplicando conceitos de pr
 1. Clone o repositório:
 
 ```bash
-git clone LINK-DO-REPOSITORIO
+[git clone LINK-DO-REPOSITORIO](https://github.com/marianapoloantonio-byte/Plataforma_de_Jogos)
 ```
 
 2. Abra a pasta do projeto no Visual Studio ou Visual Studio Code.
