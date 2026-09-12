@@ -23,7 +23,9 @@ class Usuario
 // !!!!!!!!!!!!!! FAZ ESSE Metodo para exibir os dados do usuario (nao exibe a senha)
     public void ExibirDados()
     {
-        
+        Console.WriteLine($"Seu ID: {Id}");
+        Console.WriteLine($"Nome: {Nome}");
+        Console.WriteLine($"Email: {Email}");
     }
 }
 
@@ -45,7 +47,11 @@ class Jogo
 // !!!!!!!!!!!!!!!!!!! FAZ ESSE (Metodo para exibir informaçoes do jogo)
     public void ExibirInformacoes()
     {
-        
+        Console.WriteLine($"ID: {Id}");
+        Console.WriteLine($"Nome: {Nome}");
+        Console.WriteLine($"Preço: {Preco}");
+        Console.WriteLine($"Categoria: {Categoria.Nome}");
+
     }
 }
 
@@ -67,15 +73,18 @@ class Biblioteca
     public List<Jogo> Jogos = new List<Jogo>();
 
     // !!!!!!!!!!!!!!!!!!!!!!!! FAZ ESSE (adiciona um jogo na biblioteca) !!!!!!!!!!!!!!!!!
-    public void AdicionarJogo()
+    public void AdicionarJogo(Jogo jogo)
     {
-        
+         Jogos.Add(jogo);
     }
 
     // !!!!!!!!!!!!!!!!!!!!! FAZ ESSE TBM (coloca um foreach para listar os jogos) !!!!!!!!
     public void ListarJogos()
     {
-
+            foreach(Jogo jogo in Jogos)
+        {
+            jogo.ExibirInformacoes();
+        }
     }
 }
 
@@ -97,7 +106,10 @@ class Compra
 // Metodo para finalizar a compra e adicionar o jogo na biblioteca do usuario
     public void FinalizarCompra()
     {
-        
+        ValorPago = Jogo.Preco;
+
+        Usuario.Biblioteca.AdicionarJogo(Jogo);
+        Console.WriteLine("Compra realizada com sucesso!");
     }
 }
 
