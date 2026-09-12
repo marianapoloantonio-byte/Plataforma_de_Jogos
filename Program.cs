@@ -1,8 +1,6 @@
 using System;
-
 using System.Collections.Generic;
 
-using System.Linq;
 
 class Usuario
 {
@@ -12,24 +10,24 @@ class Usuario
     public string Senha;
     public Biblioteca Biblioteca;
 
-    // -------- Construtor --------
-
+// -------- Construtor --------
     public Usuario(int id, string nome, string email, string senha)
     {
         Id = id;
         Nome = nome;
         Email = email;
         Senha = senha;
+
         Biblioteca = new Biblioteca();
     }
 
-    // Método para exibir os dados do usuário
-    // A senha não é exibida por segurança
+// !!!!!!!!!!!!!! FAZ ESSE Metodo para exibir os dados do usuario (nao exibe a senha)
     public void ExibirDados()
     {
         Console.WriteLine($"Seu ID: {Id}");
         Console.WriteLine($"Nome: {Nome}");
         Console.WriteLine($"Email: {Email}");
+
     }
 }
 
@@ -40,8 +38,7 @@ class Jogo
     public double Preco;
     public Categoria Categoria;
 
-    // -------- Construtor --------
-
+// -------- Construtor --------
     public Jogo(int id, string nome, double preco, Categoria categoria)
     {
         Id = id;
@@ -49,15 +46,16 @@ class Jogo
         Preco = preco;
         Categoria = categoria;
     }
-
-    // Método para exibir as informações do jogo
+// !!!!!!!!!!!!!!!!!!! FAZ ESSE (Metodo para exibir informaçoes do jogo)
     public void ExibirInformacoes()
     {
         Console.WriteLine($"ID: {Id}");
         Console.WriteLine($"Nome: {Nome}");
         Console.WriteLine($"Preço: {Preco}");
         Console.WriteLine($"Categoria: {Categoria.Nome}");
+
     }
+
 }
 
 class Categoria
@@ -65,29 +63,28 @@ class Categoria
     public int Id;
     public string Nome;
 
-    // -------- Construtor --------
-
-    public Categoria(int id, string nome)
-    {
+// -------- Construtor --------
+    public Categoria(int id, string nome){
         Id = id;
         Nome = nome;
     }
+
 }
 
 class Biblioteca
 {
     public List<Jogo> Jogos = new List<Jogo>();
 
-    // Adiciona um jogo na biblioteca do usuário
+    // !!!!!!!!!!!!!!!!!!!!!!!! FAZ ESSE (adiciona um jogo na biblioteca) !!!!!!!!!!!!!!!!!
     public void AdicionarJogo(Jogo jogo)
     {
         Jogos.Add(jogo);
     }
 
-    // Percorre a lista de jogos e exibe cada jogo
+    // !!!!!!!!!!!!!!!!!!!!! FAZ ESSE TBM (coloca um foreach para listar os jogos) !!!!!!!!
     public void ListarJogos()
     {
-        foreach (Jogo jogo in Jogos)
+            foreach(Jogo jogo in Jogos)
         {
             jogo.ExibirInformacoes();
         }
@@ -101,8 +98,7 @@ class Compra
     public Jogo Jogo;
     public double ValorPago;
 
-    // -------- Construtor --------
-
+// -------- Construtor --------
     public Compra(int id, Usuario usuario, Jogo jogo)
     {
         Id = id;
@@ -110,315 +106,275 @@ class Compra
         Jogo = jogo;
     }
 
-    // Finaliza a compra e adiciona o jogo
-    // na biblioteca do usuário
+// Metodo para finalizar a compra e adicionar o jogo na biblioteca do usuario
     public void FinalizarCompra()
     {
         ValorPago = Jogo.Preco;
 
         Usuario.Biblioteca.AdicionarJogo(Jogo);
-
         Console.WriteLine("Compra realizada com sucesso!");
+        
     }
 }
 
 // ===================== MAIN ========================
-
 class Program
 {
     static void Main(string[] args)
     {
-        // --- Listas para armazenar os objetos do sistema ---
 
+        // --- Listas
         List<Usuario> usuarios = new List<Usuario>();
-
         List<Jogo> jogos = new List<Jogo>();
-
         List<Categoria> categorias = new List<Categoria>();
-
         List<Compra> compras = new List<Compra>();
-
-
-        // NOVO:
-        // Guarda qual usuário está utilizando o sistema no momento.
-        // Inicialmente é null porque nenhum usuário foi cadastrado.
         Usuario usuarioAtual = null;
 
-
+        Console.WriteLine("=================================");
+        Console.WriteLine("|      PLATAFORMA DE JOGOS      |");
         Console.WriteLine("=================================");
 
-        Console.WriteLine("|       PLATAFORMA DE JOGOS      |");
-
-        Console.WriteLine("=================================");
-
+    
 
         int EscMenu;
-
         int proximoIdUsuario = 1;
-
         int proximoIdJogo = 1;
+        int proximoIdCompra = 1;
 
 
         // ------------ LOOP PARA O MENU ------------
-
-        do
-        {
-            // NOVO:
-            // Verifica se existe um usuário selecionado.
-            // Se existir, mostra o nome dele no menu.
+        do{
             if (usuarioAtual != null)
-            {
-                Console.WriteLine($"Usuário: {usuarioAtual.Nome}");
-            }
-            else
-            {
-                Console.WriteLine("Usuário: Nenhum usuário selecionado");
-            }
-
-
-            // ----- Exibe o Menu -----
-
+        {
+            Console.WriteLine($"Usuário: {usuarioAtual.Nome}");
+        }
+        else
+        {
+            Console.WriteLine("Usuário: Nenhum usuário selecionado");
+        }
+            
+            // ----- Exibe o Menu
             Console.WriteLine("----------- MENU -----------");
-
-            Console.WriteLine("| 1. Cadastrar Usuario     |");
-
+            Console.WriteLine("| 1. Cadastrar Usuario    |");
             Console.WriteLine("| 2. Cadastrar Jogo       |");
-
             Console.WriteLine("| 3. Listar Jogos         |");
-
             Console.WriteLine("| 4. Comprar Jogo         |");
-
             Console.WriteLine("| 5. Ver minha biblioteca |");
-
             Console.WriteLine("| 6. Remover jogo         |");
-
             Console.WriteLine("| 0. Sair                 |");
 
             Console.Write("Escolha: ");
-
             EscMenu = int.Parse(Console.ReadLine());
 
 
-            // Verifica qual foi a escolha do usuário
-            // e executa a opção correspondente
-
-            switch (EscMenu)
+            // Verifica qual foi a escolha do usuario e executa
+            switch(EscMenu)
             {
                 case 1:
-
-                    // ================================
-                    // NOVO: VALIDAÇÃO DO NOME
-                    // ================================
-
                     string nome;
 
-                    // O do/while faz o programa pedir o nome
-                    // novamente enquanto ele for inválido
                     do
                     {
                         Console.Write("Digite um nome: ");
+                            nome = Console.ReadLine();
 
-                        nome = Console.ReadLine();
-
-
-                        // Chama o método NomeValido para verificar
-                        // se o nome possui somente letras
                         if (!NomeValido(nome))
                         {
-                            Console.WriteLine(
-                                "ERRO! O nome deve conter apenas letras."
-                            );
+                            Console.WriteLine("ERRO! O nome deve conter apenas letras.");
                         }
-
                     } while (!NomeValido(nome));
 
-
                     Console.Write("Digite um e-mail: ");
-
                     string email = Console.ReadLine();
 
-
                     Console.Write("Digite uma senha: ");
+                    string senha = Console.ReadLine();  
 
-                    string senha = Console.ReadLine();
-
-
-                    // Cria um objeto Usuario
-                    Usuario usuario = new Usuario(
-                        proximoIdUsuario,
-                        nome,
-                        email,
-                        senha
-                    );
-
-
-                    // Adiciona o usuário na lista
+                    // --- Cria um objeto usuario
+                    Usuario usuario = new Usuario(proximoIdUsuario, nome, email, senha);
+                    // --- Adiciona usuario na lista 
                     usuarios.Add(usuario);
 
-
-                    // NOVO:
-                    // Define o usuário que acabou de ser cadastrado
-                    // como o usuário atual do sistema
                     usuarioAtual = usuario;
 
+                    Console.WriteLine("Usuario cadastrado com sucesso!");
 
-                    Console.WriteLine(
-                        "Usuario cadastrado com sucesso!"
-                    );
-
-
-                    // Aumenta o ID para o próximo usuário
                     proximoIdUsuario++;
-
                     break;
 
-
+              
                 case 2:
 
-                    Console.Write("Digite o nome do jogo: ");
+                        Console.Write("Digite o nome do jogo: ");
+                        string nomeJogo = Console.ReadLine();
 
-                    string nomeJogo = Console.ReadLine();
+                        Console.Write("Digite o preço do jogo: ");
+                        double preco = double.Parse(Console.ReadLine());
 
+                        Console.Write("Digite a categoria do jogo: ");
+                        string nomeCategoria = Console.ReadLine();
 
-                    Console.Write("Digite o preço do jogo: ");
+                        Categoria categoria = new Categoria(1, nomeCategoria);
 
-                    double preco = double.Parse(
-                        Console.ReadLine()
-                    );
+                        Jogo jogo = new Jogo(
+                            proximoIdJogo,
+                            nomeJogo,
+                            preco,
+                            categoria
+                        );
 
+                        jogos.Add(jogo);
 
-                    Console.Write("Digite a categoria do jogo: ");
+                        Console.WriteLine("Jogo cadastrado com sucesso!");
 
-                    string nomeCategoria = Console.ReadLine();
+                        proximoIdJogo++;
 
-
-                    Categoria categoria = new Categoria(
-                        1,
-                        nomeCategoria
-                    );
-
-
-                    Jogo jogo = new Jogo(
-                        proximoIdJogo,
-                        nomeJogo,
-                        preco,
-                        categoria
-                    );
-
-
-                    // Adiciona o jogo na lista de jogos
-                    jogos.Add(jogo);
-
-
-                    Console.WriteLine(
-                        "Jogo cadastrado com sucesso!"
-                    );
-
-
-                    // Aumenta o ID para o próximo jogo
-                    proximoIdJogo++;
-
+                                           
                     break;
-
 
                 case 3:
 
-                    // ================================
-                    // NOVO: LISTAR JOGOS
-                    // ================================
-
-
-                    // Count verifica quantos jogos existem na lista.
-                    // Se for igual a 0, significa que nenhum jogo
-                    // foi cadastrado.
                     if (jogos.Count == 0)
                     {
-                        Console.WriteLine(
-                            "Nenhum jogo cadastrado!"
-                        );
+                        Console.WriteLine("Nenhum jogo cadastrado!");
                     }
-
                     else
                     {
-                        // foreach percorre todos os jogos
-                        // existentes dentro da lista "jogos"
                         foreach (Jogo jogoLista in jogos)
                         {
-                            // Chama o método que exibe
-                            // as informações de cada jogo
                             jogoLista.ExibirInformacoes();
-
                             Console.WriteLine("----------------");
                         }
                     }
 
                     break;
 
-
                 case 4:
 
-                    break;
+                    // Verifica se existe um usuário selecionado
+                    if (usuarioAtual == null)
+                    {
+                        Console.WriteLine("Você precisa cadastrar um usuário primeiro!");
+                    }
 
+                    // Verifica se existe algum jogo cadastrado
+                    else if (jogos.Count == 0)
+                    {
+                        Console.WriteLine("Nenhum jogo cadastrado!");
+                    }
+
+                    else
+                    {
+                        // Mostra os jogos disponíveis
+                        Console.WriteLine("----- JOGOS DISPONÍVEIS -----");
+
+                        foreach (Jogo jogoCompra in jogos)
+                        {
+                            jogoCompra.ExibirInformacoes();
+                            Console.WriteLine("----------------");
+                        }
+
+                        // Pede o ID do jogo
+                        Console.Write("Digite o ID do jogo que deseja comprar: ");
+
+                        int idJogoCompra = int.Parse(Console.ReadLine());
+
+
+                        // Variável para guardar o jogo encontrado
+                        Jogo jogoEncontrado = null;
+
+
+                        // Procura o jogo pelo ID
+                        foreach (Jogo jogoCompra in jogos)
+                        {
+                            if (jogoCompra.Id == idJogoCompra)
+                            {
+                                jogoEncontrado = jogoCompra;
+                            }
+                        }
+
+
+                        // Verifica se o jogo foi encontrado
+                        if (jogoEncontrado == null)
+                        {
+                            Console.WriteLine("Jogo não encontrado!");
+                        }
+
+                        else
+                        {
+                            // Verifica se o jogo já está na biblioteca
+                            bool jaPossui = false;
+
+                            foreach (Jogo jogoBiblioteca in usuarioAtual.Biblioteca.Jogos)
+                            {
+                                if (jogoBiblioteca.Id == jogoEncontrado.Id)
+                                {
+                                    jaPossui = true;
+                                }
+                            }
+
+
+                            if (jaPossui)
+                            {
+                                Console.WriteLine("Você já possui esse jogo na biblioteca!");
+                            }
+
+                            else
+                            {
+                                // Cria a compra
+                                Compra compra = new Compra(
+                                    proximoIdCompra,
+                                    usuarioAtual,
+                                    jogoEncontrado
+                                );
+
+
+                                // Finaliza a compra
+                                compra.FinalizarCompra();
+
+
+                                // Adiciona a compra na lista
+                                compras.Add(compra);
+
+
+                                // Aumenta o ID da próxima compra
+                                proximoIdCompra++;
+                            }
+                        }
+                    }
+
+                    break;
 
                 case 5:
-
+                    
                     break;
-
 
                 case 6:
-
+                    
                     break;
-
 
                 case 0:
-
                     Console.WriteLine("Saindo...");
-
                     break;
-
 
                 default:
-
-                    Console.WriteLine(
-                        "[ERRO] Escolha um número válido!"
-                    );
-
+                    Console.WriteLine("[ERRO] Escolha um número válido!");
                     break;
             }
 
-        } while (EscMenu != 0);
+        }while (EscMenu != 0);
+
     }
-
-
-    // ==========================================
-    // NOVO: MÉTODO PARA VALIDAR O NOME
-    // ==========================================
-
-    static bool NomeValido(string nome)
-    {
-        // Percorre cada caractere digitado no nome
-        foreach (char letra in nome)
+            static bool NomeValido(string nome)
         {
-            // char.IsLetter verifica se o caractere
-            // atual é uma letra.
-            //
-            // O ! significa "não".
-            //
-            // Portanto:
-            // !char.IsLetter(letra)
-            // significa que o caractere NÃO é uma letra.
-
-            if (!char.IsLetter(letra))
+            foreach (char letra in nome)
             {
-                // Se encontrar número, símbolo ou outro
-                // caractere inválido, retorna false
-                return false;
+                if (!char.IsLetter(letra))
+                {
+                    return false;
+                }
             }
+
+            return true;
         }
-
-
-        // Se percorreu todo o nome e encontrou
-        // somente letras, retorna true
-        return true;
-    }
 }
