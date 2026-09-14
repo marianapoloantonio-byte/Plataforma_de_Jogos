@@ -196,7 +196,7 @@ class Program
         // Cria os objetos dos jogos
         Jogo jogo1 = new Jogo(1, "Resident Evil 2", 169, categorias[2]);
         Jogo jogo2 = new Jogo(2, "The Last of Us", 199, categorias[2]);
-        Jogo jogo3 = new Jogo(3, "The Witcher 3", 85, categorias[0]);
+        Jogo jogo3 = new Jogo(3, "The Witcher 3", 85, categorias[1]);
         Jogo jogo4 = new Jogo(4, "A Plague Tale", 140, categorias[1]);
         Jogo jogo5 = new Jogo(5, "Life is Strange", 110, categorias[1]);
         // adiciona os jogos na lista
