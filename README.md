@@ -1,47 +1,46 @@
-===== 🎮 Plataforma de Jogos =====
+# 🎮 Plataforma de Jogos
 
-===== Descrição =====
+## Descrição
 
 A Plataforma de Jogos é um sistema desenvolvido em C# com o objetivo de permitir o gerenciamento de jogos e usuários em uma única plataforma.
 
-O projeto busca facilitar a organização dos jogos disponíveis, permitindo realizar cadastros, consultas e outras operações relacionadas aos usuários e aos jogos.
+O sistema permite realizar o cadastro de usuários, consultar os jogos disponíveis, buscar jogos, realizar compras e visualizar a biblioteca do usuário.
 
-O sistema foi desenvolvido como um projeto acadêmico, aplicando conceitos de programação orientada a objetos, como classes, objetos, construtores, métodos e regras de negócio.
+O projeto foi desenvolvido como uma atividade acadêmica, aplicando conceitos de programação orientada a objetos, como classes, objetos, construtores, métodos, listas e regras de negócio.
 
-===== Integrantes =====
+## Integrantes
 
 * Mariana P Antonio
-* Alana 
+* Alana Jung Lazzarin
 
-
-===== Funcionalidades =====
+## Funcionalidades
 
 * Cadastro de usuários;
-* Cadastro de jogos;
-* Consulta de jogos cadastrados;
-* Consulta de usuários;
-* Exibição das informações dos jogos;
-* Gerenciamento dos dados da plataforma;
-* Menu de interação com o usuário;
-* Aplicação das regras de negócio do sistema.
+* Listagem de jogos disponíveis;
+* Busca de jogos pelo ID;
+* Compra de jogos;
+* Visualização da biblioteca do usuário;
+* Impedimento de compra de jogos que o usuário já possui;
+* Aplicação de 10% de desconto em jogos com preço superior a R$ 100,00;
+* Menu de interação com o usuário.
 
-===== Tecnologias =====
+## Tecnologias
 
 * C#
 * .NET
 * Git
 * GitHub
-* Visual Studio / Visual Studio Code
+* Visual Studio Code
 
-===== Como executar =====
+## Como executar
 
 1. Clone o repositório:
 
 ```bash
-[git clone LINK-DO-REPOSITORIO](https://github.com/marianapoloantonio-byte/Plataforma_de_Jogos)
+git clone https://github.com/marianapoloantonio-byte/Plataforma_de_Jogos
 ```
 
-2. Abra a pasta do projeto no Visual Studio ou Visual Studio Code.
+2. Abra a pasta do projeto no Visual Studio Code.
 
 3. Certifique-se de que o .NET esteja instalado no computador.
 
@@ -55,22 +54,22 @@ dotnet run
 
 6. O sistema será iniciado no terminal.
 
-===== Histórico de desenvolvimento =====
+## Histórico de desenvolvimento
 
 O projeto foi desenvolvido de forma gradual, utilizando commits para registrar a evolução do sistema.
 
-===== Commit 1 =====
+### Commit 1
 
 Estrutura inicial do projeto e criação das classes.
 
-===== Commit 2 =====
+### Commit 2
 
 Implementação do menu principal e cadastro de informações.
 
-===== Commit 3 =====
+### Commit 3
 
 Implementação das regras de negócio e funcionalidades da plataforma.
 
-=====  Commit 4 =====
+### Commit 4
 
 Finalização do sistema e documentação do projeto.
